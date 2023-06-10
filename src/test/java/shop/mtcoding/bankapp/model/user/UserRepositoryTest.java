@@ -43,6 +43,19 @@ public class UserRepositoryTest {
     }
 
     @Test
+    public void findByUsernameAndPassword_test(){
+        // given
+        String username = "ssar";
+        String password = "1234";
+
+        // when
+        User user = userRepository.findByUsernameAndPassword(username, password);
+
+        // then
+        Assertions.assertThat(user.getUsername()).isEqualTo("ssar");
+    }
+
+    @Test
     public void insert_fail_test(){
         // given
         String username = "ssar";
