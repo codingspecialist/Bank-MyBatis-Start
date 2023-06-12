@@ -2,7 +2,7 @@ package shop.mtcoding.bankapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import shop.mtcoding.bankapp.handler.ex.CustomException;
 
 @Controller
 public class UserController {
