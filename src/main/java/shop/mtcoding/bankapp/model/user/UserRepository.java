@@ -6,15 +6,18 @@ import java.util.List;
 
 @Mapper
 public interface UserRepository {
-    public int insert(User user);
 
-    public int updateById(User user);
+    User findByUsername(String username);
 
-    public int deleteById(int id);
+    int insert(User user);
 
-    public List<User> findAll();
+    int updateById(User user);
 
-    public User findById(int id);
+    int deleteById(int id);
 
-    public User findByUsernameAndPassword(String username, String password);
+    List<User> findAll();
+
+    User findById(int id);
+
+    User findByUsernameAndPassword(String username, String password);
 }

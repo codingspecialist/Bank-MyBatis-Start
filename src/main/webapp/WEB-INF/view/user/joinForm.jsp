@@ -4,12 +4,15 @@
 
         <h1>회원가입페이지</h1>
         <hr />
-        <form action="/join" method="post">
+        <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
             <input type="text" name="username" placeholder="Enter username" /><br />
             <input type="password" name="password" placeholder="Enter password" /><br />
             <input type="text" name="fullname" placeholder="Enter fullname" /><br />
             <button>회원가입</button>
         </form>
+
+
+
 
         </body>
 

@@ -13,6 +13,19 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Test
+    public void findByUsername_test(){
+        // given
+        String username = "ssar";
+
+        // when
+        User user = userRepository.findByUsername(username);
+
+        // then
+        Assertions.assertThat(user.getUsername()).isEqualTo("ssar");
+    }
+
+
     /**
      * BDD 패턴 (본코드를 먼저 작성하고, 그 코드를 테스트)
      * TDD 패턴 (테스트코드를 먼저 작성하고, 본코드를 짠다)
