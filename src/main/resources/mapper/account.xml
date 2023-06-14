@@ -4,6 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.bankapp.model.account.AccountRepository">
+    <select id="findByIdWithUser" resultType="shop.mtcoding.bankapp.dto.account.AccountDetailRespDTO">
+        select at.id, at.number, at.balance, at.user_id,
+               (select fullname from user_tb ut where ut.id = at.user_id) as fullname
+        from account_tb at
+        where id = #{id}
+    </select>
+
     <select id="findByUserId" resultType="shop.mtcoding.bankapp.model.account.Account">
         select * from account_tb where user_id = #{principalId}
     </select>
