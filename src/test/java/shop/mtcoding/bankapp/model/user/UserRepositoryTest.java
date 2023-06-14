@@ -75,10 +75,12 @@ public class UserRepositoryTest {
         String password = "1234";
         String fullname = "쌀";
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFullname(fullname);
+        User user = User.builder()
+                        .username(username)
+                                .password(password)
+                                        .fullname(fullname)
+                                                .build();
+
 
         // when
         int checkError = 0;
@@ -99,10 +101,11 @@ public class UserRepositoryTest {
         String password = "1234";
         String fullname = "러브";
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFullname(fullname);
+        User user = User.builder()
+                .username(username)
+                .password(password)
+                .fullname(fullname)
+                .build();
 
         // when
         int result = userRepository.insert(user);
@@ -132,11 +135,12 @@ public class UserRepositoryTest {
         String password = "1234";
         String fullname = "쌀만고";
 
-        User user = new User();
-        user.setId(id);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFullname(fullname);
+        User user = User.builder()
+                .id(id)
+                .username(username)
+                .password(password)
+                .fullname(fullname)
+                .build();
 
         // when
         int result = userRepository.updateById(user);

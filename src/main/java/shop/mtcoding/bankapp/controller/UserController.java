@@ -1,18 +1,26 @@
 package shop.mtcoding.bankapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.bankapp.dto.user.JoinReqDTO;
+import shop.mtcoding.bankapp.dto.user.LoginReqDTO;
 import shop.mtcoding.bankapp.handler.ex.CustomException;
+import shop.mtcoding.bankapp.model.user.User;
 import shop.mtcoding.bankapp.service.UserService;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired // 세션 객체 IoC 컨테이너 저장
+    private HttpSession session;
 
     @GetMapping("/joinForm")
     public String joinForm() {
@@ -22,6 +30,31 @@ public class UserController {
     @GetMapping("/loginForm")
     public String loginForm() {
         return "user/loginForm";
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        session.invalidate();
+        return "redirect:/";
+    }
+
+    // 로그인은 select지만, post 요청
+    @PostMapping("/login")
+    public String login(LoginReqDTO loginReqDTO){
+        if (loginReqDTO.getUsername() == null || loginReqDTO.getUsername().isEmpty()) {
+            throw new CustomException("username을 입력해주세요");
+        }
+        if (loginReqDTO.getPassword() == null || loginReqDTO.getPassword().isEmpty()) {
+            throw new CustomException("password를 입력해주세요");
+        }
+
+        // 서비스 호출
+        User principal = userService.로그인(loginReqDTO);
+
+        // 세션에 저장 (로그인 인증 처리)
+        session.setAttribute("principal", principal);
+
+        return "redirect:/";
     }
 
     // username=ssar&password=1234

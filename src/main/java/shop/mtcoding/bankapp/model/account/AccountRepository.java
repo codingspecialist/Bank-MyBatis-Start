@@ -6,13 +6,16 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AccountRepository {
-    public int insert(Account account);
 
-    public int updateById(Account account);
+    List<Account> findByUserId(int principalId);
 
-    public int deleteById(int id);
+    int insert(Account account);
 
-    public List<Account> findAll();
+    int updateById(Account account);
 
-    public Account findById(int id);
+    int deleteById(int id);
+
+    List<Account> findAll();
+
+    Account findById(int id);
 }
