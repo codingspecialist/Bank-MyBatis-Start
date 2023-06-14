@@ -9,7 +9,7 @@
             잔액 : ${account.balance}원
         </div>
         <div class="list-box">
-            <a href="#">전체</a> <a href="#">입금</a> <a href="#">출금</a>
+            <a href="/account/${account.id}">전체</a> <a href="/account/${account.id}?gubun=deposit">입금</a> <a href="/account/${account.id}?gubun=withdraw">출금</a>
             <br />
             <table border="1">
                 <thead>
@@ -22,13 +22,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach var="history" items="${historyList}">
                     <tr>
-                        <td>2022.10.01</td>
-                        <td>ATM</td>
-                        <td>1111계좌</td>
-                        <td>500원</td>
-                        <td>1500원</td>
+                        <td>${history.createdAt}</td>
+                        <td>${history.sender}</td>
+                        <td>${history.receiver}</td>
+                        <td>${history.amount}원</td>
+                        <td>${history.balance}원</td>
                     </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

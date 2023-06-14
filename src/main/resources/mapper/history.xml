@@ -5,7 +5,7 @@
 
 <mapper namespace="shop.mtcoding.bankapp.model.history.HistoryRepository">
 
-    <select id="findByGubun" resultType="shop.mtcoding.bankapp.dto.history.HistoryRespDto">
+    <select id="findByGubun" resultType="shop.mtcoding.bankapp.dto.history.HistoryRespDTO">
         <if test="gubun == 'withdraw'">
             SELECT ht.id, ht.amount, ht.w_balance balance, wat.number sender, 'ATM' receiver, ht.created_at
             FROM history_tb ht
